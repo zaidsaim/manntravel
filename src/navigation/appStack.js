@@ -32,7 +32,7 @@ const App = createStackNavigator();
 export function AppStack(){
 //DrawerNavigator
 return(
-<App.Navigator>
+<App.Navigator initialRouteName='HomeScreen'>
 {/*<App.Screen 
 name ="OnBoarding"
 component ={OnBoarding}
@@ -50,13 +50,16 @@ options ={{
 }}
 /> */}
  <App.Screen 
- name ="App"
+ name ="HomeScreen"
  component ={DrawerNavigator}
  options ={{
      headerShown: false,
      ...TransitionPresets.RevealFromBottomAndroid
  }}
 /> 
+
+
+
 <App.Screen 
 name ="SignInScreen"
 component ={SignInScreen}
@@ -209,14 +212,7 @@ options ={{
      ...TransitionPresets.RevealFromBottomAndroid
  }}
 /> 
-<App.Screen 
- name ="HomeScreen"
- component = {HomeScreen}
- options ={{
-     headerShown: false,
-     ...TransitionPresets.RevealFromBottomAndroid
- }}
-/> 
+
 <App.Screen 
  name ="DriwerDetails"
  component = {DriwerDetails}
@@ -245,3 +241,5 @@ options ={{
 </App.Navigator>
 )
 }
+
+//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

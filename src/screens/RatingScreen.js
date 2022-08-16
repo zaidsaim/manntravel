@@ -4,7 +4,7 @@ import  Rating from 'react-native-easy-rating';
 import { colors } from '../global/styles';
 import {Picker} from '@react-native-picker/picker';
 // import DropDownPicker from 'react-native-dropdown-picker';
-
+import { Divider } from "@rneui/themed";
 import SignatureCapture from 'react-native-signature-capture';
 import Dialog from "react-native-dialog";
 
@@ -45,16 +45,39 @@ inputValueUpdate = (val, prop) => {
 }
 
 
-  async postUser() {
+  async ratingUser() {
     const {mode,reservationid, image, amount, expensedate, expensestime} = this.state;
    try {
-     const response = await axios.post('http://52.66.67.209:8087/ords/tasp/mobile/addexpense/',this.state)
+     const response = await axios.get('http://52.66.67.209:8087/ords/tasp/mobile/ratings?',this.state)
      // setIsLoading(false)
-    
+     console.log('ratingdata',JSON.stringify(response.data))
    } catch (error) {
      console.error(error);
    }
  }
+
+
+ async signatureUser() {
+  const {mode,reservationid, image, amount, expensedate, expensestime} = this.state;
+ try {
+   const response = await axios.post('http://52.66.67.209:8087/ords/tasp/mobile/addexpense/',this.state)
+   // setIsLoading(false)
+   console.log('signaturedata',JSON.stringify(response.data))
+ } catch (error) {
+   console.error(error);
+ }
+}
+
+async imageUser() {
+  const {mode,reservationid, image, amount, expensedate, expensestime} = this.state;
+ try {
+   const response = await axios.post('http://52.66.67.209:8087/ords/tasp/mobile/addexpbill?expid=3995?expbill=clob',this.state)
+   // setIsLoading(false)
+   console.log('signaturedata',JSON.stringify(response.data))
+ } catch (error) {
+   console.error(error);
+ }
+}
 
 
   showDialog = () => {
@@ -96,9 +119,10 @@ _onDragEvent() {
 
   return (
     <View style={{flex:1,padding:10}}>
-    <View style={{marginTop:30,justifyContent:'center',alignSelf:'center',}}>
-    <Text style={{fontSize:16,color:colors.grey1}}>Rate Our Service</Text>
+    <View style={{justifyContent:'center',alignSelf:'center',}}>
+    <Text style={{fontSize:16,color:'#24ada2'}}>Rate Our Service</Text>
     </View>
+    <Divider style={{paddingTop:5}}/>
     <View style={{justifyContent:'flex-start',padding:10,}}>
     <Text style={{fontSize:14,color:colors.grey3}}>Garage Reading:</Text>
     </View>
@@ -222,7 +246,7 @@ onRate={(ratingfive)=>this.setState({ratingfive:ratingfive})}/>
       </Dialog.Container>
  
  </View>
- <View style={{backgroundColor:colors.red,marginHorizontal:100,marginTop:10,paddingVertical:7}}>
+ <View style={{backgroundColor:'#24ada2',marginHorizontal:100,marginTop:10,paddingVertical:7}}>
  <Text style={{justifyContent:'center',textAlign:'center',color:'white'}}>Submit</Text>
  </View>
     </View>

@@ -2,7 +2,7 @@ import React, {useState,useContext,useEffect} from 'react';
 
 import RequestPending from '../screens/RequestPending';
 import Toast from 'react-native-toast-message';
-
+import { Divider } from "@rneui/themed";
 
 
 import {
@@ -156,8 +156,9 @@ async function signOut() {
     try {
        //http://52.66.67.209:8087/ords/tasp/mobile/logout/?loginid=EMMANUEL
        const items=JSON.parse(localStorage.getItem('items'))
+    //    console.log('driveridpass',items.driverid)
         const response = await 
-      axios.get(`http://52.66.67.209:8087/ords/tasp/mobile/logout/?driverid=${loginid}`
+      axios.get(`http://52.66.67.209:8087/ords/tasp/mobile/logout/?loginid=${loginid}`
       );
       
       if(response.data.Responce === 0){
@@ -165,7 +166,7 @@ async function signOut() {
         navigation.navigate('SignInScreen')
   
       }
-      console.log('response=>',response.data.Responce);
+      console.log('responselogout=>',response.data.Responce);
       setData({data:response.data})
     //   console.log(data);
     }
@@ -224,11 +225,11 @@ async function signOut() {
                <DrawerItem 
                label = "Bookings"
                labelStyle={{color:'white'}}
-               icon = {({color,size})=>(
+               icon = {({color,size,focussed})=>(
                    <Icon 
                        type ="material-community"
                        name = "receipt"
-                       color ='white'
+                       color ={focussed ? '#7cc' :'#24ada2'}
                        size ={size}
                    
                    />
@@ -239,11 +240,11 @@ async function signOut() {
            <DrawerItem 
            label = "Rating"
            labelStyle={{color:'white'}}
-           icon = {({color,size})=>(
+           icon = {({color,size,focussed})=>(
                <Icon 
                    type ="material-community"
                    name = "receipt"
-                   color ='white'
+                   color ={focussed ? '#7cc' :'#24ada2'}
                    size ={size}
                
                />
@@ -254,11 +255,11 @@ async function signOut() {
                 <DrawerItem 
                 label = "MyRides"
               labelStyle={{color:'white'}}
-                icon = {({color,size})=>(
+                icon = {({color,size,focussed})=>(
                     <Icon 
                         type ="material-community"
                         name = "car-back"
-                        color ='white'
+                        color ={focussed ? '#7cc' :'#24ada2'}
                         size ={size}
                        
                         
@@ -269,12 +270,12 @@ async function signOut() {
 
                 <DrawerItem 
                 label = "ExpenseReports"
-                labelStyle={{color:'white'}}
-                icon = {({color,size})=>(
+                labelStyle={{color:'white',}}
+                icon = {({color,size,focussed})=>(
                     <Icon 
                         type ="material-community"
-                        name = "receipt"
-                        color ='white'
+                        name = "file-multiple-outline"
+                        color ={focussed ? '#7cc' :'#24ada2'}
                         size ={size}
                     
                     />
@@ -284,11 +285,11 @@ async function signOut() {
             <DrawerItem 
             label = "Support"
             labelStyle={{color:'white'}}
-            icon = {({color,size})=>(
+            icon = {({color,size,focussed})=>(
                 <Icon 
                     type ="material-community"
                     name = "lifebuoy"
-                    color ='white'
+                    color ={focussed ? '#7cc' :'#24ada2'}
                     size ={size}
                
                 />
@@ -298,11 +299,11 @@ async function signOut() {
         <DrawerItem 
         label = "RequestPending"
         labelStyle={{color:'white'}}
-        icon = {({color,size})=>(
+        icon = {({color,size,focussed})=>(
             <Icon 
                 type ="material-community"
                 name = "page-next-outline"
-                color ='white'
+                color ={focussed ? '#7cc' :'#24ada2'}
                 size ={size}
                 
             />
@@ -313,11 +314,11 @@ async function signOut() {
         <DrawerItem 
         label = "ChangePassword"
         labelStyle={{color:'white'}}
-        icon = {({color,size})=>(
+        icon = {({color,size,focussed})=>(
             <Icon 
                 type ="material-community"
                 name = "lock-outline"
-                color ='white'
+                color ={focussed ? '#7cc' :'#24ada2'}
                 size ={size}
             
             />
@@ -328,11 +329,11 @@ async function signOut() {
     <DrawerItem 
     label = "DriwerDetails"
     labelStyle={{color:'white'}}
-    icon = {({color,size})=>(
+    icon = {({color,size,focussed})=>(
         <Icon 
             type ="material-community"
             name = "human-child"
-            color ='white'
+            color ={focussed ? '#7cc' :'#24ada2'}
             size ={size}
         
         />
@@ -362,7 +363,7 @@ async function signOut() {
 
 
 
-                    <View style={{backgroundColor:'#27292b'}}>
+                   {/*} <View style={{backgroundColor:'#27292b'}}>
        <View style ={{borderTopWidth:1, borderTopColor:colors.grey5,backgroundColor:'#27292b'}}>
             <Text style ={styles.preferences}>Preferences</Text>
 
@@ -380,10 +381,10 @@ async function signOut() {
 
 
 
-       </View>
+                </View>*/}
                
-              
-                <View style={{backgroundColor:'#27292b'}}>
+              <Divider/>
+                <View style={{backgroundColor:'#27292b',  marginTop:30}}>
                 <DrawerItem 
                     label = "Sign Out"
                     labelStyle={{color:'white'}}
@@ -391,9 +392,9 @@ async function signOut() {
                         <Icon 
                             type ="material-community"
                             name = "logout-variant"
-                            color ='white'
+                            color ='#24ada2'
                             size ={size}
-                           
+                         
                         />
                     )}
                     

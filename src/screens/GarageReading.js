@@ -83,7 +83,28 @@ componentDidMount(){
  
 
   
+async gettUser(){
+  // const { data } = this.props.route.params
+  const {meaterreading,status,bookingid,latitude,longitude} = this.state;
+  try{
      
+const user=JSON.parse(localStorage.getItem('user'))
+// let URL=`http://52.66.67.209:8087/ords/tasp/mobile/updatejob?bookingid=${user[0].bookingid}&status=2&meaterreading=${meaterreading}&latitude=&longitude=`
+
+const response=await axios.get('http://52.66.67.209:8087/ords/tasp/mobile/updatejob?bookingid=18009174-36&status=2&meaterreading=1000&latitude=XX&longitude=XX')
+console.log('garage data',JSON.stringify(response.data))
+console.log('garage check reponse',response)
+
+if(response.status === 200){
+  console.log('if',JSON.stringify(response.data))
+  this.props.navigation.navigate('MyBookingScreen') 
+ }else{
+  console.log('else',JSON.stringify(response.data))
+ }
+  }catch(error) {
+      console.error(error);
+    }
+  }  
   
 
 // componentDidMount(){
@@ -102,13 +123,14 @@ componentDidMount(){
   const user=JSON.parse(localStorage.getItem('user'))
   // let URL=`http://52.66.67.209:8087/ords/tasp/mobile/updatejob?bookingid=${user[0].bookingid}&status=2&meaterreading=${meaterreading}&latitude=&longitude=`
   
-  const response=await axios.get(`http://52.66.67.209:8087/ords/tasp/mobile/updatejob?bookingid=${user[0].bookingid}&status=2&meaterreading=${meaterreading}&latitude=&longitude=`)
+  const response=await axios.get(`http://52.66.67.209:8087/ords/tasp/mobile/updatejob?bookingid=${user[0].bookingid}&status=1&meaterreading=${meaterreading}&latitude=&longitude=`)
   console.log('garage data',JSON.stringify(response.data))
   console.log('garage check reponse',response)
 
   if(response.status === 200){
     console.log('if',JSON.stringify(response.data))
-    this.props.navigation.navigate('MyBookingScreen') 
+    this.gettUser()
+    // this.props.navigation.navigate('MyBookingScreen') 
    }else{
     console.log('else',JSON.stringify(response.data))
    }

@@ -11,6 +11,7 @@ import MyAccountScreen from '../screens/MyAccountScreen';
 import ChangePassword from '../screens/ChangePassword';
 // import { ClientStack } from './clientStack';
 import MyBookingScreen from '../screens/MyBookingScreen';
+import { AppStack } from './appStack';
 
 const ClientTabs = createBottomTabNavigator();
 
@@ -20,15 +21,15 @@ export default function RootClientTabs(){
     return(
         <ClientTabs.Navigator
                     tabBarOptions = {{
-                        activeTintColor :colors.red
+                        activeTintColor :'#24ada2',
                     }}
                 >
             <ClientTabs.Screen 
-                name ="MyBookingScreen"
-                component ={MyBookingScreen}
+                name ="HomeScreen"
+                component ={HomeScreen}
                 options ={
                     {
-                        tabBarLabel : "MyBookingScreen",
+                        tabBarLabel : "Home",
                         headerShown:false,
                         tabBarIcon: ({color,size})=>(
                             <Icon 
@@ -48,47 +49,6 @@ export default function RootClientTabs(){
 
 
 
-        <ClientTabs.Screen 
-                name ="ExpenseReports"
-                component ={ExpenseReports}
-                options ={
-                    {
-                        tabBarLabel : "ExpenseReports",
-                        headerShown:false,
-                        tabBarIcon: ({color,size})=>(
-                            <Icon 
-                                name ='view-list'
-                                type = 'material'
-                                color ={color}
-                                size ={size}
-                            />
-                        )
-                    }
-                }
-
-            />
-
-
-
-        <ClientTabs.Screen 
-                name ="ChangePassword"
-                component ={ChangePassword}
-                options ={
-                    {
-                        tabBarLabel : "My Account",
-                        headerShown:false,
-                        tabBarIcon: ({color,size})=>(
-                            <Icon 
-                                name ='person'
-                                type = 'material'
-                                color ={color}
-                                size ={size}
-                            />
-                        )
-                    }
-                }
-
-            />
 
 
    
@@ -97,3 +57,49 @@ export default function RootClientTabs(){
         </ClientTabs.Navigator>
     )
 }
+
+
+
+
+
+// <ClientTabs.Screen 
+// name ="ExpenseReports"
+// component ={ExpenseReports}
+// options ={
+//     {
+//         tabBarLabel : "ExpenseReports",
+//         headerShown:false,
+//         tabBarIcon: ({color,size})=>(
+//             <Icon 
+//                 name ='view-list'
+//                 type = 'material'
+//                 color ={color}
+//                 size ={size}
+//             />
+//         )
+//     }
+// }
+
+// />
+
+
+
+// <ClientTabs.Screen 
+// name ="ChangePassword"
+// component ={ChangePassword}
+// options ={
+//     {
+//         tabBarLabel : "My Account",
+//         headerShown:false,
+//         tabBarIcon: ({color,size})=>(
+//             <Icon 
+//                 name ='person'
+//                 type = 'material'
+//                 color ={color}
+//                 size ={size}
+//             />
+//         )
+//     }
+// }
+
+// />

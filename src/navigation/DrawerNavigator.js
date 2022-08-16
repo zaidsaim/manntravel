@@ -22,16 +22,17 @@ export default function DrawerNavigator(){
             >
 
             <Drawer.Screen 
-                name = "MyBookingScreen"
-                component ={MyBookingScreen}
+                name = "HomeScreen"
+                component ={RootClientTabs}
 
                 options = {{
-                    title:'Client',
+                    title:'Home',
+                    drawerLabelStyle:{color:'white'},
                     drawerIcon: ({focussed,size}) =>(
                         <Icon 
                             type = "material-community"
                             name = "home"
-                            color = {focussed ? '#7cc' :colors.grey2}
+                            color = {focussed ? '#7cc' :'#24ada2'}
                             size = {size}
 
                         />

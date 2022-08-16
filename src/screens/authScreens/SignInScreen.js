@@ -61,9 +61,9 @@ export default function SignInScreen({route}){
 
 
 
-useEffect(()=>{
-    getUser()
-},[])
+// useEffect(()=>{
+//     getUser()
+// },[])
 
 
 
@@ -75,10 +75,11 @@ useEffect(()=>{
       axios.get(`http://52.66.67.209:8087/ords/tasp/mobile/getloginstatus/?loginid=${loginid}&&password=${password}&&token=${numberHolder}`
       );
       if(response.data.Responce === 1){
-    navigation.navigate('MyBookingScreen')
+    navigation.navigate('HomeScreen')
         console.log('true')
         console.log('tokennn',numberHolder)
         localStorage.setItem('items', JSON.stringify(response.data))
+        console.log('login-->',response.data)
         // {navigation.navigate('RootClientTabs')}
        
       }

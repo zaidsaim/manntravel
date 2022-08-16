@@ -20,14 +20,16 @@ export function AuthStack(){
                             ...TransitionPresets.RevealFromBottomAndroid
                         }}
                     />*/}
-                    <Auth.Screen 
+
+                    
+                   {/*  <Auth.Screen 
                     name ="OnBoarding"
                     component = {OnBoarding}
                     options ={{
                         headerShown: false,
                         ...TransitionPresets.RevealFromBottomAndroid
                     }}
-                />  
+                />  */}
 
 
                     <Auth.Screen 

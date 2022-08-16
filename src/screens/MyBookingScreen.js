@@ -411,7 +411,10 @@ const MyBookingScreen = ({navigation,route}) => {
 
 
 
-
+useEffect(()=>{
+  const items=JSON.parse(localStorage.getItem('items'))
+  console.log('homescreen',items)
+},[])
 
 
   
@@ -705,7 +708,7 @@ const MyBookingScreen = ({navigation,route}) => {
                   backgroundColor={colors.gray}
                 />
        </View>
-       <HomeHeader navigation ={navigation}/>
+       <Headers type='menu'  title='MyBooking' navigation={navigation}/>
     <TabView
    
       navigationState={{ index, routes }}

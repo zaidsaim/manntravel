@@ -23,3 +23,4 @@ const items=JSON.parse(localStorage.getItem('items'))
 }
 
 //  {signedIn.response === null  ?  <AuthStack />: <AppStack />}
+{/*  {items?.driverid === null  ?  <AuthStack />: <AppStack />}*/}

@@ -9,13 +9,14 @@ export default function Headers({title,type,navigation}){
 
     return(
         <View style ={styles.header}>
-            <View> 
+            <View  style={{marginLeft:10}}> 
                 <Icon 
                     type = "material-community"
                     name = {type}
                     color = {colors.white}
-                    size ={35}
+                    size ={30}
                     onPress ={()=>{navigation.goBack()}}
+                   
                    
                 />
                 

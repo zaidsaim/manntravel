@@ -25,7 +25,7 @@ export class DriwerDetails extends Component {
         </View>
         <View style={{flex:1,backgroundColor:'white'}}>
         <View style={{paddingTop:50,backgroundColor:'white'}}>
-        <Image style={{width:100,height:100,alignSelf:'center',paddingTop:30}} source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR16swVjqgkX3lYSRp20_egZNXE_3zul1jFpw&usqp=CAU'}}/>
+        <Image style={{width:100,height:100,alignSelf:'center',paddingTop:30}} source={require('../assets/imagesdriver.png')}/>
         </View>
       <View style={{padding:20,justifyContent:'center'}}>
     <View style={{flexDirection:'row',justifyContent:'space-between',marginVertical:20,fontSize:20}}>

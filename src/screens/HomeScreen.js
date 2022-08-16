@@ -386,20 +386,20 @@ import { Divider } from "@rneui/themed";
 import 'localstorage-polyfill'
 
 
-const HomeScreen = ({navigation,route}) => {
-     return(
-      <View>
-      <View>
-      <StatusBar
-          translucent
-         barStyle="light-content"
-          backgroundColor={colors.gray}
-        />
-    </View>
-    <HomeHeader navigation ={navigation}/>
-</View>
-)
-}
+// const HomeScreen = ({navigation,route}) => {
+//      return(
+//       <View>
+//       <View>
+//       <StatusBar
+//           translucent
+//          barStyle="light-content"
+//           backgroundColor={colors.gray}
+//         />
+//     </View>
+//     <HomeHeader navigation ={navigation}/>
+// </View>
+// )
+// }
 
 //<HomeHeader navigation ={navigation}/>
 
@@ -408,18 +408,18 @@ const HomeScreen = ({navigation,route}) => {
 
 
 
-// const HomeScreen = ({navigation,route}) => {
+const HomeScreen = ({navigation,route}) => {
 
 
-//   const items=JSON.parse(localStorage.getItem('items'))
+  const items=JSON.parse(localStorage.getItem('items'))
 
-//   // console.log('behinddata',items)
+  // console.log('behinddata',items)
 
-//     const [data,setData]=useState([])
-//     const [isLoading,setIsLoading]=useState(true)
-//     const [datas,setDatas]=useState([])
-//     // const [user,setUser]=useState(JSON.parse(localStorage.getItem('items')))
-//   const [user,setUser]=useState([])
+    const [data,setData]=useState([])
+    const [isLoading,setIsLoading]=useState(true)
+    const [datas,setDatas]=useState([])
+    // const [user,setUser]=useState(JSON.parse(localStorage.getItem('items')))
+  const [user,setUser]=useState([])
 
 
 
@@ -430,255 +430,261 @@ const HomeScreen = ({navigation,route}) => {
   
  
      
-//       // localStorage.setItem('user', JSON.stringify(user))
+      // localStorage.setItem('user', JSON.stringify(user))
 
   
-//       console.log('userdatass',user)
+      console.log('userdatass',user)
      
-//       // localStorage.setItem('user', JSON.stringify(user))
+      // localStorage.setItem('user', JSON.stringify(user))
 
-//     const onPress=(item)=>{
+    const onPress=(item)=>{
      
-//             // console.log('onpresssssssss',item)
-//             if (item.status == 0) {
-//               navigation.navigate('Guestdetails',{data:item})
-//             } 
-//             else if (item.status == 1) {
-//               navigation.navigate('GarageReading',{data:item})
+            // console.log('onpresssssssss',item)
+            if (item.status == 0) {
+              navigation.navigate('Guestdetails',{data:item})
+            } 
+            else if (item.status == 1) {
+              navigation.navigate('GarageReading',{data:item})
             
-//             }   
-//            else if (item.status == 2) {
-//         navigation.navigate('PickupReading',{data:item})
+            }   
+           else if (item.status == 2) {
+        navigation.navigate('PickupReading',{data:item})
       
-//       }   
-//       else if (item.status == 3) {
-//        navigation.navigate('DropPoint',{data:item})
-//       } else if (item.status == 4) {
-//          navigation.navigate('RatingScreen',{data:item})
+      }   
+      else if (item.status == 3) {
+       navigation.navigate('DropPoint',{data:item})
+      } else if (item.status == 4) {
+         navigation.navigate('RatingScreen',{data:item})
     
-//       } 
+      } 
       
-//         }
+        }
       
-//     // else if (item.status==5) {
-//     //     navigation.navigate('Guestdetails',{data:item})
+    // else if (item.status==5) {
+    //     navigation.navigate('Guestdetails',{data:item})
             
-//     //   }
-//   //   Cleardata=()=>(
-//   //     localStorage.clear()
+    //   }
+  //   Cleardata=()=>(
+  //     localStorage.clear()
   
-//   // )
+  // )
 
 
 
 
 
-//   // useEffect(()=>{
-//   //   getUser()
-//   // },[])
+  // useEffect(()=>{
+  //   getUser()
+  // },[])
 
   
-//   async function getUser() {
+  async function getUser() {
    
-//     // const items=JSON.parse(localStorage.getItem('items'))
+    // const items=JSON.parse(localStorage.getItem('items'))
    
   
-//     try {
-//       const items=JSON.parse(localStorage.getItem('items'))
-//       const response = await axios.get(`http://52.66.67.209:8087/ords/tasp/mobile/getreservation/?driverid=${items.driverid}&status=D`);
-//       console.log('GETDATA',response.data);
-//       localStorage.setItem('user', JSON.stringify(response.data.Booking))
-//       setData({data:response.data.Booking})
-//       // console.log('new user ',user);
+    try {
+      const items=JSON.parse(localStorage.getItem('items'))
+      const response = await axios.get(`http://52.66.67.209:8087/ords/tasp/mobile/getreservation/?driverid=${items.driverid}&status=D`);
+      console.log('GETDATA',response.data);
+      localStorage.setItem('user', JSON.stringify(response.data.Booking))
+      setData({data:response.data.Booking})
+      // console.log('new user ',user);
    
-//     // setIsLoading(false)
+    // setIsLoading(false)
  
-//     // console.log('screen data',data);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   }
+    // console.log('screen data',data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
 
-//   useEffect(()=>{
+  useEffect(()=>{
+    const timer = setTimeout(() => {
+      getUser()
+    }, 1000);
+    return () => clearTimeout(timer);
    
-//     getUser()
-//   },[])
+  },[setData])
    
-//   useEffect(()=>{
-//     completeUser()
+  useEffect(()=>{
+   
+    const timer = setTimeout(() => {
+      completeUser()
+    }, 1000);
+    return () => clearTimeout(timer);
+  },[])
 
-//   },[])
 
 
-
-//   async function completeUser() {
-//     console.log('itemsdtaaaa',items);
-//     const items=JSON.parse(localStorage.getItem('items'))
-//     try {
-//       const items=JSON.parse(localStorage.getItem('items'))
-//       const response = await axios.get(`http://52.66.67.209:8087/ords/tasp/mobile/getreservation/?driverid=${items.driverid}&&status=L`)
-//       if(response.data.Responce === '000') {
-//         setDatas({datas:response.data.Booking})
-//         console.log('complete datassss',datas);
-//       }    
-//     // setIsLoading(false)
+  async function completeUser() {
+    console.log('itemsdtaaaa',items);
+    const items=JSON.parse(localStorage.getItem('items'))
+    try {
+      const items=JSON.parse(localStorage.getItem('items'))
+      const response = await axios.get(`http://52.66.67.209:8087/ords/tasp/mobile/getreservation/?driverid=${items.driverid}&&status=L`)
+      if(response.data.Responce === '000') {
+        setDatas({datas:response.data.Booking})
+        console.log('complete datassss',datas);
+      }    
+    // setIsLoading(false)
   
-//       console.log('complete data',datas.datas);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   }
+      console.log('complete data',datas.datas);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   
-// //    <TouchableOpacity onPress={()=>navigation.navigate('Guestdetails',{data:item})}>
+//    <TouchableOpacity onPress={()=>navigation.navigate('Guestdetails',{data:item})}>
 
 
 
-//   const FirstRoute = () => (
-//     <View style={{ flex: 1, backgroundColor: 'white' }}>
-//     <FlatList
-//       data={data.data}
-//       keyExtractor={item => item.id}
+  const FirstRoute = () => (
+    <View style={{ flex: 1, backgroundColor: 'white' }}>
+    <FlatList
+      data={data.data}
+      keyExtractor={item => item.id}
     
-//       renderItem={({item})=>(
-//           <>
-//           <TouchableOpacity onPress={()=>onPress(item)}>
-//           <View style={{backgroundColor:colors.grey4,padding:10,}}>
+      renderItem={({item})=>(
+          <>
+          <TouchableOpacity onPress={()=>onPress(item)}>
+          <View style={{backgroundColor:colors.grey4,padding:10,}}>
         
-//       <Text style={{fontSize:16,fontWeight:'bold',color:colors.lightBlue}} >{item.servicestartdate}</Text>
+      <Text style={{fontSize:16,fontWeight:'bold',color:colors.lightBlue}} >{item.servicestartdate}</Text>
       
-//       </View>
+      </View>
    
-//       <View style={{flexDirection:'row',justifyContent:'space-between',fontSize:25}}>
-//        <Text style={{color:colors.grey2,fontSize:16}}>Status</Text>
-//        <Text style={{color:colors.lightBlue,fontSize:16}}>{item.status}</Text>
-//        </View>
-//         <View style={{marginHorizontal:5,padding:5,fontSize:25,paddingVertical:20}}>
-//          <View style={{flexDirection:'row',justifyContent:'space-between',fontSize:25}}>
-//           <Text style={{color:colors.grey2,fontSize:16}}>Bookedby</Text>
-//           <Text style={{color:colors.lightBlue,fontSize:16}}>{item.bookedby}</Text>
-//           </View>
-//           <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//           <Text style={{color:colors.grey2,fontSize:16}}>Guestcontactno</Text>
-//           <Text style={{color:colors.lightBlue,fontSize:16}}>{item.guestcontactno}</Text>
-//           </View>
-//           <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//           <Text style={{color:colors.grey2,fontSize:16}}>Guestname</Text>
-//       <Text style={{color:colors.lightBlue,fontSize:16}}>{item.guestname}</Text>
-//       </View>
-//       <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Companys</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.companys}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Rm</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.rm}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Note</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.note}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Payment status</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.payment_status}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Reservation no</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.reservationid}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Pick Up Time</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.pickuptime}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Pick Up Point</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.pickuppoint}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Drop off Point</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.pickuppoint}</Text>
-//   </View>
-//   </View>
-//   </TouchableOpacity>
-//   </>
-//       )}
-//       />
-//       </View>
-//   );
+      <View style={{flexDirection:'row',justifyContent:'space-between',fontSize:25}}>
+       <Text style={{color:colors.grey2,fontSize:16}}>Status</Text>
+       <Text style={{color:colors.lightBlue,fontSize:16}}>{item.status}</Text>
+       </View>
+        <View style={{marginHorizontal:5,padding:5,fontSize:25,paddingVertical:20}}>
+         <View style={{flexDirection:'row',justifyContent:'space-between',fontSize:25}}>
+          <Text style={{color:colors.grey2,fontSize:16}}>Bookedby</Text>
+          <Text style={{color:colors.lightBlue,fontSize:16}}>{item.bookedby}</Text>
+          </View>
+          <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+          <Text style={{color:colors.grey2,fontSize:16}}>Guestcontactno</Text>
+          <Text style={{color:colors.lightBlue,fontSize:16}}>{item.guestcontactno}</Text>
+          </View>
+          <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+          <Text style={{color:colors.grey2,fontSize:16}}>Guestname</Text>
+      <Text style={{color:colors.lightBlue,fontSize:16}}>{item.guestname}</Text>
+      </View>
+      <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Companys</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.companys}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Rm</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.rm}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Note</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.note}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Payment status</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.payment_status}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Reservation no</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.reservationid}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Pick Up Time</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.pickuptime}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Pick Up Point</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.pickuppoint}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Drop off Point</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.pickuppoint}</Text>
+  </View>
+  </View>
+  </TouchableOpacity>
+  </>
+      )}
+      />
+      </View>
+  );
   
 
-//   const SecondRoute = () => (
+  const SecondRoute = () => (
     
-//     <View style={{ flex: 1, backgroundColor: 'white' }}>
-//     <FlatList
-//       data={datas.datas}
-//       keyExtractor={item => item.id}
+    <View style={{ flex: 1, backgroundColor: 'white' }}>
+    <FlatList
+      data={datas.datas}
+      keyExtractor={item => item.id}
     
-//       renderItem={({item})=>(
-//           <>
-//           <TouchableOpacity>
-//           <View style={{backgroundColor:colors.grey4,padding:10,}}>
-//           <TouchableOpacity >
-//       <Text style={{fontSize:16,fontWeight:'bold',color:colors.lightBlue}} >{item.servicestartdate}</Text>
-//       </TouchableOpacity>
-//       </View>
-//         <View style={{marginHorizontal:5,padding:5,fontSize:25,paddingVertical:20}}>
-//          <View style={{flexDirection:'row',justifyContent:'space-between',fontSize:25}}>
-//           <Text style={{color:colors.grey2,fontSize:16}}>Booked By</Text>
-//           <Text style={{color:colors.lightBlue,fontSize:16}}>{item.bookedby}</Text>
-//           </View>
-//           <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//           <Text style={{color:colors.grey2,fontSize:16}}>Guestcontactno</Text>
-//           <Text style={{color:colors.lightBlue,fontSize:16}}>{item.guestcontactno}</Text>
-//           </View>
-//           <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//           <Text style={{color:colors.grey2,fontSize:16}}>Guestname</Text>
-//       <Text style={{color:colors.lightBlue,fontSize:16}}>{item.guestname}</Text>
-//       </View>
-//       <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Companys</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.companys}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Rm</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.rm}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Note</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.note}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Payment status</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.payment_status}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Reservation no</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.reservationid}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Pick Up Time</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.pickuptime}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Pick Up Point</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.pickuppoint}</Text>
-//   </View>
-//   <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
-//       <Text style={{color:colors.grey2,fontSize:16}}>Drop off Point</Text>
-//   <Text style={{color:colors.lightBlue,fontSize:16}}>{item.pickuppoint}</Text>
-//   </View>
-//   </View>
-//   </TouchableOpacity>
-//   </>
-//       )}
-//       />
-//       </View>
-//   );
+      renderItem={({item})=>(
+          <>
+          <TouchableOpacity>
+          <View style={{backgroundColor:colors.grey4,padding:10,}}>
+          <TouchableOpacity >
+      <Text style={{fontSize:16,fontWeight:'bold',color:colors.lightBlue}} >{item.servicestartdate}</Text>
+      </TouchableOpacity>
+      </View>
+        <View style={{marginHorizontal:5,padding:5,fontSize:25,paddingVertical:20}}>
+         <View style={{flexDirection:'row',justifyContent:'space-between',fontSize:25}}>
+          <Text style={{color:colors.grey2,fontSize:16}}>Booked By</Text>
+          <Text style={{color:colors.lightBlue,fontSize:16}}>{item.bookedby}</Text>
+          </View>
+          <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+          <Text style={{color:colors.grey2,fontSize:16}}>Guestcontactno</Text>
+          <Text style={{color:colors.lightBlue,fontSize:16}}>{item.guestcontactno}</Text>
+          </View>
+          <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+          <Text style={{color:colors.grey2,fontSize:16}}>Guestname</Text>
+      <Text style={{color:colors.lightBlue,fontSize:16}}>{item.guestname}</Text>
+      </View>
+      <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Companys</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.companys}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Rm</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.rm}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Note</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.note}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Payment status</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.payment_status}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Reservation no</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.reservationid}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Pick Up Time</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.pickuptime}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Pick Up Point</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.pickuppoint}</Text>
+  </View>
+  <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}}>
+      <Text style={{color:colors.grey2,fontSize:16}}>Drop off Point</Text>
+  <Text style={{color:colors.lightBlue,fontSize:16}}>{item.pickuppoint}</Text>
+  </View>
+  </View>
+  </TouchableOpacity>
+  </>
+      )}
+      />
+      </View>
+  );
   
-//   const renderScene = SceneMap({
-//     first: FirstRoute,
-//     second: SecondRoute,
-//   });
+  const renderScene = SceneMap({
+    first: FirstRoute,
+    second: SecondRoute,
+  });
   
 
 
@@ -690,46 +696,46 @@ const HomeScreen = ({navigation,route}) => {
 
 
 
-//   const layout = useWindowDimensions();
+  const layout = useWindowDimensions();
 
-//   const [index, setIndex] = React.useState(0);
-//   const [routes] = React.useState([
-//     { key: 'first', title: 'Open' ,},
-//     { key: 'second', title: 'Completed' },
-//   ]);
-
-
-//   // if(isLoading){
-//   //   return(
-//   //     <View style={styles.preloader}>
-//   //       <ActivityIndicator size="large" color="#9E9E9E"/>
-//   //     </View>
-//   //   )
-//   // }    
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'first', title: 'Open' ,},
+    { key: 'second', title: 'Completed' },
+  ]);
 
 
-//   return (
-//     <>
+  // if(isLoading){
+  //   return(
+  //     <View style={styles.preloader}>
+  //       <ActivityIndicator size="large" color="#9E9E9E"/>
+  //     </View>
+  //   )
+  // }    
 
-//     <View>
-//               <StatusBar
-//                   translucent
-//                  barStyle="light-content"
-//                   backgroundColor={colors.gray}
-//                 />
-//        </View>
+
+  return (
+    <>
+
+    <View>
+              <StatusBar
+                  translucent
+                 barStyle="light-content"
+                  backgroundColor={colors.gray}
+                />
+       </View>
       
-//     <TabView
-    
-//       navigationState={{ index, routes }}
-//       renderScene={renderScene}
-//       onIndexChange={setIndex}
-//       initialLayout={{ width: layout.width }}
-//       navigation={navigation}
-//     />
-//     </>
-//   )
-// }
+    <TabView
+     
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={{ width: layout.width }}
+      navigation={navigation}
+    />
+    </>
+  )
+}
 
 
 
